@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GERMAS - Gerakan Masyarakat Sehat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2a9d8f;
+            --secondary-color: #264653;
+            --accent-color: #e9c46a;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --danger-color: #e76f51;
+            --success-color: #2a9d8f;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f8f9fa;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        
+        .logo-text span {
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(42, 157, 143, 0.9), rgba(38, 70, 83, 0.9)), url('https://images.unsplash.com/photo-1535914254981-b5012eebbd15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #f4a261;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #21867a;
+        }
+        
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* About GERMAS */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Initiatives */
+        .initiatives {
+            background-color: #f1f8f7;
+        }
+        
+        .initiatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .initiative-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .initiative-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .initiative-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Tips */
+        .tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .tip-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .tip-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .tip-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .tip-card:hover .tip-image img {
+            transform: scale(1.05);
+        }
+        
+        .tip-content {
+            padding: 1.5rem;
+        }
+        
+        /* Resources */
+        .resources {
+            background-color: #f1f8f7;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .resource-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .resource-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* Contact */
+        .contact-container {
+            display: flex;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+            padding-right: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+                padding-right: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            section {
+                padding: 3rem 0;
+            }
+            
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-heartbeat logo-icon"></i>
+                    <div class="logo-text">GER<span>MAS</span></div>
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Beranda</a></li>
+                    <li><a href="#about">Tentang GERMAS</a></li>
+                    <li><a href="#initiatives">Inisiatif</a></li>
+                    <li><a href="#tips">Tips Sehat</a></li>
+                    <li><a href="#resources">Sumber Daya</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Gerakan Masyarakat Sehat</h1>
+            <p>GERMAS adalah suatu tindakan sistematis dan terencana yang dilakukan secara bersama-sama oleh seluruh komponen bangsa dengan kesadaran, kemauan, dan kemampuan berperilaku sehat untuk meningkatkan kualitas hidup.</p>
+            <a href="#about" class="btn btn-primary">Pelajari Lebih Lanjut</a>
+        </div>
+    </section>
+
+    <!-- About GERMAS -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang GERMAS</h2>
+                <p>Gerakan Masyarakat Sehat (GERMAS) adalah inisiatif nasional untuk mendorong masyarakat hidup sehat</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Apa itu GERMAS?</h3>
+                    <p>GERMAS (Gerakan Masyarakat Sehat) adalah upaya untuk meningkatkan kesadaran, kemauan, dan kemampuan hidup sehat bagi setiap orang dalam rangka mewujudkan derajat kesehatan masyarakat yang setinggi-tingginya.</p>
+                    <p>Gerakan ini dicanangkan oleh pemerintah Indonesia sebagai respon terhadap meningkatnya penyakit tidak menular (PTM) seperti diabetes, hipertensi, stroke, dan penyakit jantung yang sebagian besar disebabkan oleh pola hidup tidak sehat.</p>
+                    <p>Melalui GERMAS, diharapkan masyarakat dapat menerapkan pola hidup sehat dalam keseharian sehingga dapat mengurangi risiko penyakit dan meningkatkan kualitas hidup.</p>
+                    <a href="#initiatives" class="btn">Lihat Inisiatif GERMAS</a>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Keluarga Sehat">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Initiatives -->
+    <section class="initiatives" id="initiatives">
+        <div class="container">
+            <div class="section-title">
+                <h2>Inisiatif GERMAS</h2>
+                <p>7 Langkah utama dalam Gerakan Masyarakat Sehat</p>
+            </div>
+            
+            <div class="initiatives-grid">
+                <div class="initiative-card">
+                    <div class="initiative-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h3>Konsumsi Sayur dan Buah</h3>
+                    <p>Meningkatkan konsumsi sayur dan buah setiap hari untuk memenuhi kebutuhan serat dan vitamin tubuh.</p>
+                </div>
+                
+                <div class="initiative-card">
+                    <div class="initiative-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3>Aktifitas Fisik</h3>
+                    <p>Melakukan aktivitas fisik minimal 30 menit per hari untuk menjaga kebugaran dan kesehatan tubuh.</p>
+                </div>
+                
+                <div class="initiative-card">
+                    <div class="initiative-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <h3>Periksa Kesehatan Berkala</h3>
+                    <p>Memeriksakan kesehatan secara rutin untuk deteksi dini penyakit dan faktor risiko kesehatan.</p>
+                </div>
+                
+                <div class="initiative-card">
+                    <div class="initiative-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3>Tidak Merokok</h3>
+                    <p>Menghindari rokok dan paparan asap rokok untuk mencegah penyakit pernapasan dan kanker.</p>
+                </div>
+                
+                <div class="initiative-card">
+                    <div class="initiative-icon">
+                        <i class="fas fa-hand-sparkles"></i>
+                    </div>
+                    <h3>Cuci Tangan Pakai Sabun</h3>
+                    <p>Mencuci tangan dengan sabun dan air mengalir untuk mencegah penularan penyakit infeksi.</p>
+                </div>
+                
+                <div class="initiative-card">
+                    <div class="initiative-icon">
+                        <i class="fas fa-toilet"></i>
+                    </div>
+                    <h3>Gunakan Jamban Sehat</h3>
+                    <p>Menggunakan jamban yang memenuhi syarat kesehatan untuk mencegah penyakit berbasis lingkungan.</p>
+                </div>
+                
+                <div class="initiative-card">
+                    <div class="initiative-icon">
+                        <i class="fas fa-trash-alt"></i>
+                    </div>
+                    <h3>Kelola Sampah dengan Benar</h3>
+                    <p>Mengelola sampah rumah tangga dengan memilah, mengurangi, menggunakan kembali, dan mendaur ulang.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips -->
+    <section id="tips">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tips Sehat Harian</h2>
+                <p>Panduan praktis untuk menerapkan GERMAS dalam kehidupan sehari-hari</p>
+            </div>
+            
+            <div class="tips-container">
+                <div class="tip-card">
+                    <div class="tip-image">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Makanan Sehat">
+                    </div>
+                    <div class="tip-content">
+                        <h3>Pola Makan Sehat</h3>
+                        <p>Terapkan prinsip "isi piringku": 1/2 piring sayur dan buah, 1/4 piring protein, dan 1/4 piring karbohidrat. Batasi gula, garam, dan lemak jenuh.</p>
+                    </div>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-image">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Olahraga">
+                    </div>
+                    <div class="tip-content">
+                        <h3>Aktifitas Fisik Rutin</h3>
+                        <p>Lakukan aktivitas fisik minimal 150 menit per minggu. Bisa dengan jalan cepat, bersepeda, berenang, atau olahraga favorit Anda.</p>
+                    </div>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-image">
+                        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w-1350&q=80" alt="Istirahat Cukup">
+                    </div>
+                    <div class="tip-content">
+                        <h3>Istirahat yang Cukup</h3>
+                        <p>Tidur 7-9 jam per hari untuk dewasa. Istirahat cukup meningkatkan imunitas, konsentrasi, dan kesehatan mental.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="resources" id="resources">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sumber Daya & Download</h2>
+                <p>Material dan informasi untuk mendukung GERMAS di komunitas Anda</p>
+            </div>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Buku Panduan GERMAS</h3>
+                    <p>Panduan lengkap implementasi GERMAS untuk individu, keluarga, dan komunitas.</p>
+                    <a href="#" class="btn">Download PDF</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Data & Statistik</h3>
+                    <p>Data kesehatan terkini dan statistik penyakit tidak menular di Indonesia.</p>
+                    <a href="#" class="btn">Lihat Data</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video Edukasi</h3>
+                    <p>Kumpulan video edukasi tentang pola hidup sehat dan pencegahan penyakit.</p>
+                    <a href="#" class="btn">Tonton Video</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Kalender Kegiatan</h3>
+                    <p>Jadwal kegiatan GERMAS di berbagai daerah dan event kesehatan nasional.</p>
+                    <a href="#" class="btn">Lihat Jadwal</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kontak & Informasi</h2>
+                <p>Hubungi kami untuk informasi lebih lanjut tentang GERMAS</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <p>Untuk informasi lebih lanjut tentang Gerakan Masyarakat Sehat (GERMAS), silakan hubungi:</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Alamat</h4>
+                            <p>Kementerian Kesehatan RI<br>Jalan HR Rasuna Said Blok X5 Kav. 4-9<br>Jakarta Selatan 12950</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Telepon</h4>
+                            <p>(021) 5201590</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>germas@kemkes.go.id</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div>
+                            <h4>Website</h4>
+                            <p>www.kemkes.go.id</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Kirim Pesan</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subjek</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>GERMAS</h3>
+                    <p>Gerakan Masyarakat Sehat (GERMAS) adalah upaya bersama untuk meningkatkan kualitas hidup masyarakat Indonesia melalui penerapan pola hidup sehat.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Link Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Tentang GERMAS</a></li>
+                        <li><a href="#initiatives">Inisiatif GERMAS</a></li>
+                        <li><a href="#tips">Tips Sehat</a></li>
+                        <li><a href="#resources">Sumber Daya</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Inisiatif Utama</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Konsumsi Sayur & Buah</a></li>
+                        <li><a href="#">Aktifitas Fisik</a></li>
+                        <li><a href="#">Periksa Kesehatan Berkala</a></li>
+                        <li><a href="#">Tidak Merokok</a></li>
+                        <li><a href="#">Cuci Tangan Pakai Sabun</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Kementerian Kesehatan RI, Jakarta</li>
+                        <li><i class="fas fa-phone"></i> (021) 5201590</li>
+                        <li><i class="fas fa-envelope"></i> germas@kemkes.go.id</li>
+                        <li><i class="fas fa-globe"></i> www.kemkes.go.id</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 GERMAS - Gerakan Masyarakat Sehat. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real application, you would send this data to a server
+            // For this example, we'll just show an alert
+            alert(`Terima kasih ${name}! Pesan Anda telah berhasil dikirim. Kami akan menghubungi Anda di ${email} segera.`);
+            
+            // Reset form
+            contactForm.reset();
+        });
+        
+        // Highlight active navigation link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
